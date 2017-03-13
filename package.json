@@ -1,0 +1,23 @@
+{
+  "name": "koa-rester",
+  "version": "0.0.1",
+  "description": "A simple Koa library that makes REST quite easy",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dicearr/koa-rester.git"
+  },
+  "keywords": [
+    "koa",
+    "REST"
+  ],
+  "author": "Diego Ceresuela",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dicearr/koa-rester/issues"
+  },
+  "homepage": "https://github.com/dicearr/koa-rester#readme"
+}
