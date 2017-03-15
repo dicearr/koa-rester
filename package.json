@@ -1,10 +1,10 @@
 {
   "name": "koa-rester",
-  "version": "0.0.1",
+  "version": "0.0.0",
   "description": "A simple Koa library that makes REST quite easy",
-  "main": "index.js",
+  "main": "lib/rester.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha --recursive"
   },
   "repository": {
     "type": "git",
@@ -19,5 +19,61 @@
   "bugs": {
     "url": "https://github.com/dicearr/koa-rester/issues"
   },
-  "homepage": "https://github.com/dicearr/koa-rester#readme"
+  "homepage": "https://github.com/dicearr/koa-rester#readme",
+  "dependencies": {
+    "debug": "^2.6.0"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "eslint": "^3.14.1",
+    "eslint-config-airbnb": "^14.0.0",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jsx-a11y": "^3.0.2",
+    "eslint-plugin-react": "^6.9.0",
+    "jsdoc": "^3.4.3",
+    "koa": "^2.2.0",
+    "koa-router": "^7.1.0",
+    "mocha": "^3.2.0",
+    "mongoose": "^4.9.0",
+    "supertest": "^3.0.0"
+  },
+  "eslintConfig": {
+    "extends": "airbnb",
+    "env": {
+      "browser": true,
+      "node": true,
+      "es6": true,
+      "mocha": true
+    },
+    "parserOptions": {
+      "ecmaVersion": 2017
+    },
+    "globals": {
+      "Exception": true
+    },
+    "rules": {
+      "no-console": 0,
+      "no-use-before-define": 0,
+      "no-param-reassign": [2, { "props": false }],
+      "valid-jsdoc": [
+        "error",
+        {
+          "requireReturn": true,
+          "requireReturnType": true,
+          "requireParamDescription": true,
+          "requireReturnDescription": true
+        }
+      ],
+      "require-jsdoc": [
+        "error",
+        {
+          "require": {
+            "FunctionDeclaration": true,
+            "MethodDefinition": true,
+            "ClassDeclaration": true
+          }
+        }
+      ]
+    }
+  }
 }
