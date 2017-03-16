@@ -11,11 +11,15 @@ const request = require('supertest');
 function wrapper() {
   return new Promise((resolve, reject) => {
     orm.connect('mysql://root@localhost:3306/test', (err, db) => {
-      if (err) {
-        reject(err);
-        return;
-      }
-      resolve(db);
+      if (err) reject(err);
+      const model = db.define('users', {
+        firstName: String,
+        lastName: String,
+      });
+      db.sync((nErr) => {
+        if (nErr) reject(nErr);
+        resolve(model);
+      });
     });
   });
 }
@@ -29,11 +33,7 @@ describe('ORM2 CRUD operations', () => {
     });
   });
   before(async () => {
-    const db = await wrapper();
-    model = db.define('users', {
-      firstName: String,
-      lastName: String,
-    });
+    model = await wrapper();
   });
   it('GET /test/resource should return an empty list', (done) => {
     const r = rester.add(model, 'test/resource').getList().router;
