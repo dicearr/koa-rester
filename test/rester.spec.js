@@ -13,7 +13,7 @@ describe('Rester', () => {
     expect(rester).to.be.an.instanceof(Rester);
   });
   it('getList() should build /test/resource endpoint', () => {
-    const r = rester.getList({}, 'test/resource').router;
+    const r = rester.add({}, 'test/resource').getList().router;
     const stack = r.routes().router.stack;
     expect(stack.length).to.equal(1);
     const layer = stack.pop();

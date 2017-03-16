@@ -35,6 +35,8 @@
     "koa-router": "^7.1.0",
     "mocha": "^3.2.0",
     "mongoose": "^4.9.0",
+    "mysql": "^2.13.0",
+    "orm": "^3.2.3",
     "supertest": "^3.0.0"
   },
   "eslintConfig": {
@@ -54,7 +56,12 @@
     "rules": {
       "no-console": 0,
       "no-use-before-define": 0,
-      "no-param-reassign": [2, { "props": false }],
+      "no-param-reassign": [
+        2,
+        {
+          "props": false
+        }
+      ],
       "valid-jsdoc": [
         "error",
         {

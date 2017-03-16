@@ -1,31 +1,38 @@
 const expect = require('chai').expect;
 const Rester = require('../../lib/rester');
 const Router = require('koa-router');
-const mongoose = require('mongoose');
+const orm = require('orm');
 const Koa = require('koa');
 const request = require('supertest');
 
-const schema = new mongoose.Schema({
-  title: {
-    type: String,
-    required: true,
-  },
-  description: {
-    type: String,
-  },
-});
+/**
+ * @return {[type]} [description]
+ */
+function wrapper() {
+  return new Promise((resolve, reject) => {
+    orm.connect('mysql://root@localhost:3306/test', (err, db) => {
+      if (err) {
+        reject(err);
+        return;
+      }
+      resolve(db);
+    });
+  });
+}
 
-const model = mongoose.model('resource', schema);
-
-mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost/test');
-mongoose.connection.on('error', console.error);
-
-describe('Mongoose CRUD operations', () => {
+describe('ORM2 CRUD operations', () => {
   let rester;
+  let model;
   beforeEach(() => {
     rester = new Rester({
       router: new Router(),
+    });
+  });
+  before(async () => {
+    const db = await wrapper();
+    model = db.define('users', {
+      firstName: String,
+      lastName: String,
     });
   });
   it('GET /test/resource should return an empty list', (done) => {
