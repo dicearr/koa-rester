@@ -7,15 +7,15 @@
 ## TODO
 
 ### Mongoose
-- [x] GET /item
-- [ ] POST /item
-- [ ] GET /item/:id
-- [ ] PATCH /item/:id
-- [ ] PUT /item/:id
+- [x] GET /resource
+- [ ] POST /resource
+- [ ] GET /resource/:id
+- [ ] PATCH /resource/:id
+- [ ] PUT /resource/:id
 
 ### ORM
-- [x] GET /item
-- [ ] POST /item
-- [ ] GET /item/:id
-- [ ] PATCH /item/:id
-- [ ] PUT /item/:id
+- [x] GET /resource
+- [ ] POST /resource
+- [ ] GET /resource/:id
+- [ ] PATCH /resource/:id
+- [ ] PUT /resource/:id
