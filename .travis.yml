@@ -4,3 +4,5 @@ node_js:
 services:
   - mysql
   - mongodb
+before_install:
+  - mysql -e 'CREATE DATABASE IF NOT EXISTS test;'
