@@ -12,6 +12,19 @@ describe('Rester', () => {
   it('new Rester() should return an instance of Rester', () => {
     expect(rester).to.be.an.instanceof(Rester);
   });
+  it('new Rester() should throw an exception if router is not defined', () => {
+    expect(() => {
+      new Rester(); // eslint-disable-line
+    }).to.throw('Undefined router');
+  });
+  it('getList() should return false if no model nor base are provided', () => {
+    let r = rester.add(null, 'test/resource');
+    expect(r.getList()).to.equal(false);
+    r = rester.add({}, null);
+    expect(r.getList()).to.equal(false);
+    r = rester.add(null, 'test/resource');
+    expect(r.getList()).to.equal(false);
+  });
   it('getList() should build /test/resource endpoint', () => {
     const r = rester.add({}, 'test/resource').getList().router;
     const stack = r.routes().router.stack;

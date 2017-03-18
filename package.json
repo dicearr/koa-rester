@@ -6,6 +6,7 @@
   "scripts": {
     "test": "mocha --recursive",
     "cover": "istanbul cover node_modules/mocha/bin/_mocha --report lcovonly -- --recursive",
+    "lcover": "istanbul cover node_modules/mocha/bin/_mocha -- --recursive",
     "coveralls": "npm run cover && cat ./coverage/lcov.info | coveralls"
   },
   "repository": {
