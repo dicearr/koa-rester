@@ -5,8 +5,8 @@
   "main": "lib/rester.js",
   "scripts": {
     "test": "mocha --recursive",
-    "cover": "istanbul cover node_modules/mocha/bin/_mocha -- --recursive",
-    "coveralls": "npm run cover -- --report lcovonly && cat ./coverage/lcov.info | coveralls"
+    "cover": "istanbul cover node_modules/mocha/bin/_mocha --report lcovonly -- --recursive",
+    "coveralls": "npm run cover && cat ./coverage/lcov.info | coveralls"
   },
   "repository": {
     "type": "git",
