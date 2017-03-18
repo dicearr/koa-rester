@@ -8,14 +8,14 @@
 ## TODO
 
 ### Mongoose
-- [x] GET /resource
+- [ ] **GET /resource**
 - [ ] POST /resource
 - [ ] GET /resource/:id
 - [ ] PATCH /resource/:id
 - [ ] PUT /resource/:id
 
 ### ORM
-- [x] GET /resource
+- [ ] **GET /resource**
 - [ ] POST /resource
 - [ ] GET /resource/:id
 - [ ] PATCH /resource/:id
