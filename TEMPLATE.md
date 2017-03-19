@@ -6,24 +6,33 @@
 
 > [Koa](https://github.com/koajs/koa) library for deploying RESTful APIs easily
 
-## Todo
+* Highly extensible/editables
+* Native support for [mongoose](https://github.com/Automattic/mongoose) and [ORM](https://github.com/dresende/node-orm2)
+* One line to deploy an API Rest from a Model
+* Tested with [koa-router](https://github.com/alexmingoia/koa-router/tree/master/) but it'll work with almost any router that provides get|post|put|delete operations.
+* Tested with [koa-bodyparser](https://github.com/koajs/bodyparser) 
 
-### Mongoose
-- [x] GET /resource
-- [x] POST /resource
-- [x] GET /resource/:id
-- [x] PATCH /resource/:id
-- [ ] ~~PUT /resource/:id~~
-- [ ] **DELETE /resource/:id**
+## Usage
+```javascript
+const router = new Router();
 
-### ORM
-- [x] GET /resource
-- [x] POST /resource
-- [x] GET /resource/:id
-- [x] PATCH /resource/:id
-- [ ] ~~PUT /resource/:id~~
-- [ ] **DELETE /resource/:id**
+router.use(bodyParser());
+rester = new Rester({ router });
 
+// Expose GET, POST /test/resource 
+//        GET, PATCH, DELETE /test/resource/:id
+rester.add(model, 'test/resource').rest();
+
+// Expose GET /test/resource1 
+//        GET /test/resource1/:id
+rester.add(model1, 'test/resource1').list().get();
+
+new Koa()
+  .use(r.routes())
+  .use(r.allowedMethods())
+  .listen(30001);
+```
+More complex examples with model definitions included are located in test files.
 ## API Reference
 
 {{>main}}

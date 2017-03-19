@@ -6,24 +6,33 @@
 
 > [Koa](https://github.com/koajs/koa) library for deploying RESTful APIs easily
 
-## Todo
+* Highly extensible/editables
+* Native support for [mongoose](https://github.com/Automattic/mongoose) and [ORM](https://github.com/dresende/node-orm2)
+* One line to deploy an API Rest from a Model
+* Tested with [koa-router](https://github.com/alexmingoia/koa-router/tree/master/) but it'll work with almost any router that provides get|post|put|delete operations.
+* Tested with [koa-bodyparser](https://github.com/koajs/bodyparser) 
 
-### Mongoose
-- [x] GET /resource
-- [x] POST /resource
-- [x] GET /resource/:id
-- [x] PATCH /resource/:id
-- [ ] ~~PUT /resource/:id~~
-- [ ] **DELETE /resource/:id**
+## Usage
+```javascript
+const router = new Router();
 
-### ORM
-- [x] GET /resource
-- [x] POST /resource
-- [x] GET /resource/:id
-- [x] PATCH /resource/:id
-- [ ] ~~PUT /resource/:id~~
-- [ ] **DELETE /resource/:id**
+router.use(bodyParser());
+rester = new Rester({ router });
 
+// Expose GET, POST /test/resource 
+//        GET, PATCH, DELETE /test/resource/:id
+rester.add(model, 'test/resource').rest();
+
+// Expose GET /test/resource1 
+//        GET /test/resource1/:id
+rester.add(model1, 'test/resource1').list().get();
+
+new Koa()
+  .use(r.routes())
+  .use(r.allowedMethods())
+  .listen(30001);
+```
+More complex examples with model definitions included are located in test files.
 ## API Reference
 
 <a name="module_koa-rester"></a>
@@ -40,6 +49,7 @@
             * [.post(options)](#module_koa-rester--Rester+post) ⇒ <code>Rester</code>
             * [.get(options)](#module_koa-rester--Rester+get) ⇒ <code>Rester</code>
             * [.patch(options)](#module_koa-rester--Rester+patch) ⇒ <code>Rester</code>
+            * [.delete(options)](#module_koa-rester--Rester+delete) ⇒ <code>Rester</code>
         * _static_
             * [.errorHandler(error)](#module_koa-rester--Rester.errorHandler) ⇒ <code>Object</code>
 
@@ -125,6 +135,19 @@ with the id given in the url.
 
 #### rester.patch(options) ⇒ <code>Rester</code>
 Build the endpoint /resource/:id allowing PATCH requests. It will modify the resource
+with the id given in the url.
+
+**Kind**: instance method of <code>[Rester](#exp_module_koa-rester--Rester)</code>  
+**Returns**: <code>Rester</code> - The Rester itself.  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| options | <code>Object</code> | The endpoint specific options. |
+
+<a name="module_koa-rester--Rester+delete"></a>
+
+#### rester.delete(options) ⇒ <code>Rester</code>
+Build the endpoint /resource/:id allowing DELETE requests. It will remove the resource
 with the id given in the url.
 
 **Kind**: instance method of <code>[Rester](#exp_module_koa-rester--Rester)</code>  

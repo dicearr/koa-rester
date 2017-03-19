@@ -112,4 +112,20 @@ describe('Mongoose CRUD operations', () => {
         done();
       });
   });
+  it('DELETE /test/resource/:id should return a deleted resource', (done) => {
+    const r = rester.add(model, 'test/resource').delete().router;
+    const server = new Koa()
+      .use(r.routes())
+      .use(r.allowedMethods());
+    request(server.listen())
+      .delete(`/test/resource/${id}`)
+      .expect(200)
+      .then((res) => {
+        expect(res.status).to.equal(200);
+        expect(res.body.title).to.equal('tit2');
+        expect(res.body.description).to.equal('desc');
+        expect(res.body._id).to.equal(id);
+        done();
+      });
+  });
 });

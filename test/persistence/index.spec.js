@@ -53,4 +53,18 @@ describe('Common CRUD operations', () => {
         done();
       });
   });
+  it('DELETE /test/resource/:id should return 500 on error', (done) => {
+    const r = rester.add({}, 'test/resource').delete().router;
+    const server = new Koa()
+      .use(r.routes())
+      .use(r.allowedMethods());
+    request(server.listen())
+      .delete('/test/resource/1')
+      .expect(500)
+      .then((res) => {
+        expect(res.body.status).to.equal(500);
+        expect(res.body.message).to.equal('Internal error');
+        done();
+      });
+  });
 });

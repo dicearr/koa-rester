@@ -127,6 +127,19 @@ describe('ORM2 CRUD operations', () => {
     expect(res.status).to.equal(200);
     expect(res.body.title).to.equal('tit2');
     expect(res.body.description).to.equal('desc');
+  });
+  it('DELETE /test/resource/:id should return a modified resource', async () => {
+    const c = await wrapper();
+    const r = rester.add(c.model, 'test/resource').delete().router;
+    const server = new Koa()
+      .use(r.routes())
+      .use(r.allowedMethods());
+    const res = await request(server.listen())
+      .delete('/test/resource/1')
+      .expect(200);
+    expect(res.status).to.equal(200);
+    expect(res.body.title).to.equal('tit2');
+    expect(res.body.description).to.equal('desc');
     c.db.drop();
   });
 });
