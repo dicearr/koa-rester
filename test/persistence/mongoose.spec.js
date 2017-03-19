@@ -17,6 +17,7 @@ const schema = new mongoose.Schema({
 });
 
 const model = mongoose.model('resource', schema);
+let id;
 
 mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://localhost/test');
@@ -58,6 +59,7 @@ describe('Mongoose CRUD operations', () => {
       .then((res) => {
         expect(res.body.title).to.equal('tit');
         expect(res.body.description).to.equal('desc');
+        id = res.body._id;
         done();
       });
   });
@@ -74,6 +76,22 @@ describe('Mongoose CRUD operations', () => {
         expect(res.status).to.equal(422);
         expect(res.body.status).to.equal(422);
         expect(res.body.message).to.equal('Invalid data');
+        done();
+      });
+  });
+  it('GET /test/resource/:id should return a valid resource', (done) => {
+    const r = rester.add(model, 'test/resource').get().router;
+    const server = new Koa()
+      .use(r.routes())
+      .use(r.allowedMethods());
+    request(server.listen())
+      .get(`/test/resource/${id}`)
+      .expect(200)
+      .then((res) => {
+        expect(res.status).to.equal(200);
+        expect(res.body.title).to.equal('tit');
+        expect(res.body.description).to.equal('desc');
+        expect(res.body._id).to.equal(id);
         done();
       });
   });

@@ -11,16 +11,16 @@
 ### Mongoose
 - [x] GET /resource
 - [x] POST /resource
-- [ ] **GET /resource/:id**
-- [ ] PATCH /resource/:id
+- [x] GET /resource/:id
+- [ ] **PATCH /resource/:id**
 - [ ] PUT /resource/:id
 - [ ] DELETE /resource/:id
 
 ### ORM
 - [x] GET /resource
 - [x] POST /resource
-- [ ] **GET /resource/:id**
-- [ ] PATCH /resource/:id
+- [x] GET /resource/:id
+- [ ] **PATCH /resource/:id**
 - [ ] PUT /resource/:id
 - [ ] DELETE /resource/:id
 
@@ -37,6 +37,7 @@
             * [.add(model, base)](#module_koa-rester--Rester+add) ⇒ <code>Rester</code>
             * [.list(options)](#module_koa-rester--Rester+list) ⇒ <code>Rester</code>
             * [.post(options)](#module_koa-rester--Rester+post) ⇒ <code>Rester</code>
+            * [.get(options)](#module_koa-rester--Rester+get) ⇒ <code>Rester</code>
         * _static_
             * [.errorHandler(error)](#module_koa-rester--Rester.errorHandler) ⇒ <code>Object</code>
 
@@ -84,6 +85,19 @@ all the resources available in the persistence layer.
 #### rester.post(options) ⇒ <code>Rester</code>
 Build the endpoint /resource allowing POST requests. It will save the resource
 received in the persistence layer.
+
+**Kind**: instance method of <code>[Rester](#exp_module_koa-rester--Rester)</code>  
+**Returns**: <code>Rester</code> - The Rester itself.  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| options | <code>Object</code> | The endpoint specific options. |
+
+<a name="module_koa-rester--Rester+get"></a>
+
+#### rester.get(options) ⇒ <code>Rester</code>
+Build the endpoint /resource/:id allowing GET requests. It will return the resource
+with the id given in the url.
 
 **Kind**: instance method of <code>[Rester](#exp_module_koa-rester--Rester)</code>  
 **Returns**: <code>Rester</code> - The Rester itself.  

@@ -41,13 +41,25 @@ describe('Rester', () => {
     const r = rester.add({}, 'test/resource').post().router;
     isBuilt('POST', r);
   });
+  it('get() should return false if no model nor base are provided', () => {
+    let r = rester.add(null, 'test/resource');
+    expect(r.get()).to.equal(false);
+    r = rester.add({}, null);
+    expect(r.get()).to.equal(false);
+    r = rester.add(null, 'test/resource');
+    expect(r.get()).to.equal(false);
+  });
+  it('get() should build /test/resource endpoint', () => {
+    const r = rester.add({}, 'test/resource').get().router;
+    isBuilt('GET', r, '/:id');
+  });
 });
 
-const isBuilt = function isBuilt(method, r) {
+const isBuilt = function isBuilt(method, r, extra = '') {
   const stack = r.routes().router.stack;
   expect(stack.length).to.equal(1);
   const layer = stack.pop();
-  expect(layer.path).to.equal('/test/resource');
+  expect(layer.path).to.equal(`/test/resource${extra}`);
   expect(layer.methods).to.include(method);
   expect(layer.stack.length).to.be.at.least(1);
 };

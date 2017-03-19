@@ -23,6 +23,10 @@ function wrapper(withSync = true) {
           type: 'text',
           required: true,
         },
+        _id: {
+          type: 'serial',
+          key: true,
+        }, // the auto-incrementing primary key
       });
       if (withSync) {
         db.sync((nErr) => {
@@ -69,7 +73,6 @@ describe('ORM2 CRUD operations', () => {
       .expect(200);
     expect(res.body).to.be.instanceof(Array);
     expect(res.body.length).to.equal(0);
-    // c.db.drop(); FIXME: If dropped next test cannot create the table again
   });
   it('POST /test/resource should add a new resource', async () => {
     const c = await wrapper();
@@ -83,7 +86,6 @@ describe('ORM2 CRUD operations', () => {
       .expect(201);
     expect(res.body.title).to.equal('tit');
     expect(res.body.description).to.equal('desc');
-    // c.db.drop(); FIXME: If dropped next test cannot create the table again
   });
   it('POST /test/resource should return 422 with an invalid data', async () => {
     const c = await wrapper();
@@ -98,6 +100,19 @@ describe('ORM2 CRUD operations', () => {
     expect(res.status).to.equal(422);
     expect(res.body.status).to.equal(422);
     expect(res.body.message).to.equal('Invalid data');
+  });
+  it('GET /test/resource/:id should return a valid resource', async () => {
+    const c = await wrapper();
+    const r = rester.add(c.model, 'test/resource').get().router;
+    const server = new Koa()
+      .use(r.routes())
+      .use(r.allowedMethods());
+    const res = await request(server.listen())
+      .get('/test/resource/1')
+      .expect(200);
+    expect(res.status).to.equal(200);
+    expect(res.body.title).to.equal('tit');
+    expect(res.body.description).to.equal('desc');
     c.db.drop();
   });
 });
