@@ -95,7 +95,7 @@ received in the persistence layer.
 <a name="module_koa-rester--Rester.errorHandler"></a>
 
 #### Rester.errorHandler(error) ⇒ <code>Object</code>
-Converts a persistence layer error into a JSON error. Json erros must have
+Converts a persistence layer error into a JSON error. JSON errors must have
 at least 2 properties 'status' and 'message'. Status will be the http status
 code of the response so it must be a valid one. This handler supports only
 mongoose and orm2 errors. If any other DBMS is required it can be overwritten
@@ -107,3 +107,4 @@ via Rester's option errorHandler.
 | Param | Type | Description |
 | --- | --- | --- |
 | error | <code>Object</code> | The error object thrown from the persistence layer. |
+
