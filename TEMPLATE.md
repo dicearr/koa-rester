@@ -15,7 +15,7 @@
 ## Installation
 
 ```
-$ npm install koa-router
+$ npm install koa-rester
 ```
 
 
