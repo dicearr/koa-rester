@@ -27,9 +27,7 @@ describe('Mongoose CRUD operations', () => {
   beforeEach(() => {
     const router = new Router();
     router.use(bodyParser());
-    rester = new Rester({
-      router,
-    });
+    rester = new Rester({ router });
   });
   after((done) => {
     mongoose.connection.db.dropCollection('resources', () => done());

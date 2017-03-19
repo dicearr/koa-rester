@@ -7,7 +7,8 @@
     "test": "mocha --recursive",
     "cover": "istanbul cover node_modules/mocha/bin/_mocha --report lcovonly -- --recursive",
     "lcover": "istanbul cover node_modules/mocha/bin/_mocha -- --recursive",
-    "coveralls": "npm run cover && cat ./coverage/lcov.info | coveralls"
+    "coveralls": "npm run cover && cat ./coverage/lcov.info | coveralls",
+    "docs": "jsdoc2md --configure jsdoc.conf.json --template TEMPLATE.md lib\\*.js > README.md"
   },
   "repository": {
     "type": "git",
@@ -27,6 +28,9 @@
     "debug": "^2.6.0"
   },
   "devDependencies": {
+    "babel-core": "^6.24.0",
+    "babel-plugin-transform-async-to-generator": "^6.22.0",
+    "babel-preset-es2015": "^6.24.0",
     "chai": "^3.5.0",
     "coveralls": "^2.12.0",
     "eslint": "^3.14.1",
@@ -36,6 +40,7 @@
     "eslint-plugin-react": "^6.9.0",
     "istanbul": "^1.1.0-alpha.1",
     "jsdoc": "^3.4.3",
+    "jsdoc-babel": "^0.3.0",
     "koa": "^2.2.0",
     "koa-bodyparser": "^4.1.0",
     "koa-router": "^7.1.0",
