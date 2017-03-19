@@ -13,16 +13,16 @@
 - [x] POST /resource
 - [x] GET /resource/:id
 - [x] PATCH /resource/:id
-- [ ] **PUT /resource/:id**
-- [ ] DELETE /resource/:id
+- [ ] ~~PUT /resource/:id~~
+- [ ] **DELETE /resource/:id**
 
 ### ORM
 - [x] GET /resource
 - [x] POST /resource
 - [x] GET /resource/:id
 - [x] PATCH /resource/:id
-- [ ] **PUT /resource/:id**
-- [ ] DELETE /resource/:id
+- [ ] ~~PUT /resource/:id~~
+- [ ] **DELETE /resource/:id**
 
 ## API Reference
 
@@ -149,3 +149,4 @@ via Rester's option errorHandler.
 | Param | Type | Description |
 | --- | --- | --- |
 | error | <code>Object</code> | The error object thrown from the persistence layer. |
+
