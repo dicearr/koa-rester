@@ -12,16 +12,16 @@
 - [x] GET /resource
 - [x] POST /resource
 - [x] GET /resource/:id
-- [ ] **PATCH /resource/:id**
-- [ ] PUT /resource/:id
+- [x] PATCH /resource/:id
+- [ ] **PUT /resource/:id**
 - [ ] DELETE /resource/:id
 
 ### ORM
 - [x] GET /resource
 - [x] POST /resource
 - [x] GET /resource/:id
-- [ ] **PATCH /resource/:id**
-- [ ] PUT /resource/:id
+- [x] PATCH /resource/:id
+- [ ] **PUT /resource/:id**
 - [ ] DELETE /resource/:id
 
 ## API Reference

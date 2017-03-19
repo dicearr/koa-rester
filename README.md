@@ -6,22 +6,22 @@
 
 > [Koa](https://github.com/koajs/koa) library for deploying RESTful APIs easily
 
-## TODO
+## Todo
 
 ### Mongoose
 - [x] GET /resource
 - [x] POST /resource
 - [x] GET /resource/:id
-- [ ] **PATCH /resource/:id**
-- [ ] PUT /resource/:id
+- [x] PATCH /resource/:id
+- [ ] **PUT /resource/:id**
 - [ ] DELETE /resource/:id
 
 ### ORM
 - [x] GET /resource
 - [x] POST /resource
 - [x] GET /resource/:id
-- [ ] **PATCH /resource/:id**
-- [ ] PUT /resource/:id
+- [x] PATCH /resource/:id
+- [ ] **PUT /resource/:id**
 - [ ] DELETE /resource/:id
 
 ## API Reference
@@ -35,9 +35,11 @@
         * [new Rester(options)](#new_module_koa-rester--Rester_new)
         * _instance_
             * [.add(model, base)](#module_koa-rester--Rester+add) ⇒ <code>Rester</code>
+            * [.rest(options)](#module_koa-rester--Rester+rest) ⇒ <code>Rester</code>
             * [.list(options)](#module_koa-rester--Rester+list) ⇒ <code>Rester</code>
             * [.post(options)](#module_koa-rester--Rester+post) ⇒ <code>Rester</code>
             * [.get(options)](#module_koa-rester--Rester+get) ⇒ <code>Rester</code>
+            * [.patch(options)](#module_koa-rester--Rester+patch) ⇒ <code>Rester</code>
         * _static_
             * [.errorHandler(error)](#module_koa-rester--Rester.errorHandler) ⇒ <code>Object</code>
 
@@ -66,6 +68,19 @@ base.
 | --- | --- | --- |
 | model | <code>Object</code> | The persistence layer Model object. |
 | base | <code>String</code> | Base URL from which the resource API will be built. |
+
+<a name="module_koa-rester--Rester+rest"></a>
+
+#### rester.rest(options) ⇒ <code>Rester</code>
+Build the endpoints /resource and /resource/:id with the methods GET, POST
+PUT, PATCH and DELETE.
+
+**Kind**: instance method of <code>[Rester](#exp_module_koa-rester--Rester)</code>  
+**Returns**: <code>Rester</code> - The Rester itself.  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| options | <code>Object</code> | The resource specific options. |
 
 <a name="module_koa-rester--Rester+list"></a>
 
@@ -106,6 +121,19 @@ with the id given in the url.
 | --- | --- | --- |
 | options | <code>Object</code> | The endpoint specific options. |
 
+<a name="module_koa-rester--Rester+patch"></a>
+
+#### rester.patch(options) ⇒ <code>Rester</code>
+Build the endpoint /resource/:id allowing PATCH requests. It will modify the resource
+with the id given in the url.
+
+**Kind**: instance method of <code>[Rester](#exp_module_koa-rester--Rester)</code>  
+**Returns**: <code>Rester</code> - The Rester itself.  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| options | <code>Object</code> | The endpoint specific options. |
+
 <a name="module_koa-rester--Rester.errorHandler"></a>
 
 #### Rester.errorHandler(error) ⇒ <code>Object</code>
@@ -121,4 +149,3 @@ via Rester's option errorHandler.
 | Param | Type | Description |
 | --- | --- | --- |
 | error | <code>Object</code> | The error object thrown from the persistence layer. |
-

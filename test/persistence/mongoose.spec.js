@@ -95,4 +95,21 @@ describe('Mongoose CRUD operations', () => {
         done();
       });
   });
+  it('PATCH /test/resource/:id should return a modified resource', (done) => {
+    const r = rester.add(model, 'test/resource').patch().router;
+    const server = new Koa()
+      .use(r.routes())
+      .use(r.allowedMethods());
+    request(server.listen())
+      .patch(`/test/resource/${id}`)
+      .send({ title: 'tit2' })
+      .expect(200)
+      .then((res) => {
+        expect(res.status).to.equal(200);
+        expect(res.body.title).to.equal('tit2');
+        expect(res.body.description).to.equal('desc');
+        expect(res.body._id).to.equal(id);
+        done();
+      });
+  });
 });
