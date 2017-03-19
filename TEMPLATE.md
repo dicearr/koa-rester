@@ -6,11 +6,18 @@
 
 > [Koa](https://github.com/koajs/koa) library for deploying RESTful APIs easily
 
-* Highly extensible/editables
+* Highly extensible/editable
 * Native support for [mongoose](https://github.com/Automattic/mongoose) and [ORM](https://github.com/dresende/node-orm2)
 * One line to deploy an API Rest from a Model
 * Tested with [koa-router](https://github.com/alexmingoia/koa-router/tree/master/) but it'll work with almost any router that provides get|post|put|delete operations.
 * Tested with [koa-bodyparser](https://github.com/koajs/bodyparser) 
+
+## Installation
+
+```
+$ npm install koa-router
+```
+
 
 ## Usage
 ```javascript
