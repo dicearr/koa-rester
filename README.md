@@ -33,6 +33,7 @@ new Koa()
   .listen(30001);
 ```
 More complex examples with model definitions included are located in test files.
+
 ## API Reference
 
 <a name="module_koa-rester"></a>
