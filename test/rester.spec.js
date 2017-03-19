@@ -53,6 +53,23 @@ describe('Rester', () => {
     const r = rester.add({}, 'test/resource').get().router;
     isBuilt('GET', r, '/:id');
   });
+  it('rest() should build all the endpoints', () => {
+    const r = rester.add({}, 'test/resource').rest().router;
+    const stack = r.routes().router.stack;
+    expect(stack.length).to.equal(3);
+    let layer = stack.pop();
+    expect(layer.path).to.equal('/test/resource/:id');
+    expect(layer.methods).to.include('GET');
+    expect(layer.stack.length).to.be.at.least(1);
+    layer = stack.pop();
+    expect(layer.path).to.equal('/test/resource');
+    expect(layer.methods).to.include('POST');
+    expect(layer.stack.length).to.be.at.least(1);
+    layer = stack.pop();
+    expect(layer.path).to.equal('/test/resource');
+    expect(layer.methods).to.include('GET');
+    expect(layer.stack.length).to.be.at.least(1);
+  });
 });
 
 const isBuilt = function isBuilt(method, r, extra = '') {
