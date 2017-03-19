@@ -12,7 +12,7 @@ describe('Common CRUD operations', () => {
     });
   });
   it('GET /test/resource should return 500 on error', (done) => {
-    const r = rester.add({}, 'test/resource').getList().router;
+    const r = rester.add({}, 'test/resource').list().router;
     const server = new Koa()
       .use(r.routes())
       .use(r.allowedMethods());
