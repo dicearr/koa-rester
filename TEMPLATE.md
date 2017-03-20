@@ -11,9 +11,10 @@
 * One line to deploy an API Rest from a Model
 * Tested with [koa-router](https://github.com/alexmingoia/koa-router/tree/master/) but it'll work with almost any router that provides get|post|put|delete operations.
 * Tested with [koa-bodyparser](https://github.com/koajs/bodyparser) 
+* Todo features are listed in [\#1](https://github.com/dicearr/koa-rester/issues/1)
 
 ## Installation
-
+ 
 ```
 $ npm install koa-rester
 ```
