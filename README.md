@@ -40,7 +40,8 @@ new Koa()
   .use(r.allowedMethods())
   .listen(30001);
 ```
-More complex examples with model definitions included are located in test files.
+
+More complex examples, with model definitions included, are located in the [wiki](https://github.com/dicearr/koa-rester/wiki).
 
 ## API Reference
 
@@ -181,3 +182,4 @@ via Rester's option errorHandler.
 | Param | Type | Description |
 | --- | --- | --- |
 | error | <code>Object</code> | The error object thrown from the persistence layer. |
+

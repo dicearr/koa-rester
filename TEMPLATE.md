@@ -40,7 +40,8 @@ new Koa()
   .use(r.allowedMethods())
   .listen(30001);
 ```
-More complex examples with model definitions included are located in test files.
+
+More complex examples, with model definitions included, are located in the [wiki](https://github.com/dicearr/koa-rester/wiki).
 
 ## API Reference
 
