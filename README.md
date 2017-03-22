@@ -77,6 +77,10 @@ Create a new Rester.
 | Param | Type | Description |
 | --- | --- | --- |
 | options | <code>Object</code> | Configuration object. Property router is compulsory. |
+| options.errorHandler | <code>function</code> | A function that receive the DB error and returns an JSON object with at least two properties status and message. Status will be the HTTP response status and the whole object will be sent as body. |
+| options.router | <code>Object</code> | The koa express style router. Any router that supports get, post, put, patch and delete operations. |
+| options.model | <code>Object</code> | The persistence layer model. It can be included here or by using the add() function. Use add function if the rester itself is going to be used to export multiple resources. |
+| options.base | <code>String</code> | The resource base url. It can be included here or by using the add() function. Use add function if the rester itself is going to be used to export multiple resources. |
 
 <a name="module_koa-rester--Rester+add"></a>
 
