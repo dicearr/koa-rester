@@ -5,7 +5,7 @@
 [![dependencies Status](https://david-dm.org/dicearr/koa-rester/status.svg)](https://david-dm.org/dicearr/koa-rester)
 ![](https://img.shields.io/npm/dm/koa-rester.png)
 
-> [Koa](https://github.com/koajs/koa) library for deploying RESTful APIs easily
+> [Koa](https://github.com/koajs/koa) based framework for deploying RESTful APIs easily
 
 * Highly extensible/editable
 * Native support for [mongoose](https://github.com/Automattic/mongoose) and [ORM](https://github.com/dresende/node-orm2)
