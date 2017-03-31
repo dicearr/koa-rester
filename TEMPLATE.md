@@ -32,13 +32,22 @@ rester = new Rester({ router, base });
 // Expose GET, POST /test/resource 
 //        GET, PATCH, DELETE /test/resource/:id
 rester.add(model, 'resource').rest({
-  after: async (ctx) => {
+  after: async (ctx, next) => {
     try {
       // It will be executed in all the REST requests
       await next();
     } catch (err) {
       ctx.body = { message: err.message };
       ctx.status = err.status || 500;
+    },
+    afterPost: async (ctx, next) => {
+      try {
+        // This will overwrite after middleware for POST
+        await next();
+      } catch (err) {
+        ctx.body = { message: err.message };
+        ctx.status = err.status || 500;
+      }
     }
   }
 });

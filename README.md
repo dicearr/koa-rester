@@ -32,13 +32,22 @@ rester = new Rester({ router, base });
 // Expose GET, POST /test/resource 
 //        GET, PATCH, DELETE /test/resource/:id
 rester.add(model, 'resource').rest({
-  after: async (ctx) => {
+  after: async (ctx, next) => {
     try {
       // It will be executed in all the REST requests
       await next();
     } catch (err) {
       ctx.body = { message: err.message };
       ctx.status = err.status || 500;
+    },
+    afterPost: async (ctx, next) => {
+      try {
+        // This will overwrite after middleware for POST
+        await next();
+      } catch (err) {
+        ctx.body = { message: err.message };
+        ctx.status = err.status || 500;
+      }
     }
   }
 });
@@ -129,6 +138,8 @@ PUT, PATCH and DELETE.
 | Param | Type | Description |
 | --- | --- | --- |
 | options | <code>Object</code> | The resource specific options. |
+| options.before | <code>function</code> | beforeList, beforePost, beforeGet, beforePut and/or beforeDelte: A koa middleware to be executed before the selected operation. |
+| options.after | <code>function</code> | afterList, afterPost, afterGet, afterPut and/or afterDelte: A koa middleware to be executed after the selected operation. |
 
 <a name="module_koa-rester--Rester+list"></a>
 
