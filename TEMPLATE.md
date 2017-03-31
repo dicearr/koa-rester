@@ -31,11 +31,31 @@ rester = new Rester({ router, base });
 
 // Expose GET, POST /test/resource 
 //        GET, PATCH, DELETE /test/resource/:id
-rester.add(model, 'resource').rest();
+rester.add(model, 'resource').rest({
+  after: async (ctx) => {
+    try {
+      // It will be executed in all the REST requests
+      await next();
+    } catch (err) {
+      ctx.body = { message: err.message };
+      ctx.status = err.status || 500;
+    }
+  }
+});
 
 // Expose GET /test/resource1 
 //        GET /test/resource1/:id
-rester.add(model1, 'resource1').list().get();
+rester.add(model1, 'resource1').list({
+  before: async (ctx, next) => {
+    try {
+      // do something
+      await next();
+    } catch (err) {
+      ctx.body = { message: err.message };
+      ctx.status = err.status || 500;
+    }
+  }
+}).get();
 
 new Koa()
   .use(r.routes())
