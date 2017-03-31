@@ -1,6 +1,6 @@
 {
   "name": "koa-rester",
-  "version": "0.0.6",
+  "version": "0.1.6",
   "description": "A simple Koa library that makes REST quite easy",
   "main": "lib/rester.js",
   "scripts": {
