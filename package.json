@@ -49,6 +49,7 @@
     "mongoose": "^4.9.0",
     "mysql": "^2.13.0",
     "orm": "^3.2.3",
+    "sinon": "^2.1.0",
     "supertest": "^3.0.0"
   },
   "eslintConfig": {
