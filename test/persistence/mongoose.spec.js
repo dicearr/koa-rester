@@ -27,14 +27,15 @@ describe('Mongoose CRUD operations', () => {
   let rester;
   beforeEach(() => {
     const router = new Router();
+    const base = 'test';
     router.use(bodyParser());
-    rester = new Rester({ router });
+    rester = new Rester({ router, base });
   });
   after((done) => {
     mongoose.connection.db.dropCollection('resources', () => done());
   });
   it('GET /test/resource should return an empty list', (done) => {
-    const r = rester.add(model, 'test/resource').list().router;
+    const r = rester.add(model, 'resource').list().router;
     const server = new Koa()
       .use(r.routes())
       .use(r.allowedMethods());
@@ -48,7 +49,7 @@ describe('Mongoose CRUD operations', () => {
       });
   });
   it('POST /test/resource should add a new resource', (done) => {
-    const r = rester.add(model, 'test/resource').post().router;
+    const r = rester.add(model, 'resource').post().router;
     const server = new Koa()
       .use(r.routes())
       .use(r.allowedMethods());
@@ -64,7 +65,7 @@ describe('Mongoose CRUD operations', () => {
       });
   });
   it('POST /test/resource should return 422 with an invalid data', (done) => {
-    const r = rester.add(model, 'test/resource').post().router;
+    const r = rester.add(model, 'resource').post().router;
     const server = new Koa()
       .use(r.routes())
       .use(r.allowedMethods());
@@ -80,7 +81,7 @@ describe('Mongoose CRUD operations', () => {
       });
   });
   it('GET /test/resource/:id should return a valid resource', (done) => {
-    const r = rester.add(model, 'test/resource').get().router;
+    const r = rester.add(model, 'resource').get().router;
     const server = new Koa()
       .use(r.routes())
       .use(r.allowedMethods());
@@ -96,7 +97,7 @@ describe('Mongoose CRUD operations', () => {
       });
   });
   it('PATCH /test/resource/:id should return a modified resource', (done) => {
-    const r = rester.add(model, 'test/resource').patch().router;
+    const r = rester.add(model, 'resource').patch().router;
     const server = new Koa()
       .use(r.routes())
       .use(r.allowedMethods());
@@ -113,7 +114,7 @@ describe('Mongoose CRUD operations', () => {
       });
   });
   it('DELETE /test/resource/:id should return a deleted resource', (done) => {
-    const r = rester.add(model, 'test/resource').delete().router;
+    const r = rester.add(model, 'resource').delete().router;
     const server = new Koa()
       .use(r.routes())
       .use(r.allowedMethods());

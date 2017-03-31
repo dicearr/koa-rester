@@ -9,10 +9,11 @@ describe('Common CRUD operations', () => {
   beforeEach(() => {
     rester = new Rester({
       router: new Router(),
+      base: 'test',
     });
   });
   it('GET /test/resource should return 500 on error', (done) => {
-    const r = rester.add({}, 'test/resource').list().router;
+    const r = rester.add({}, 'resource').list().router;
     const server = new Koa()
       .use(r.routes())
       .use(r.allowedMethods());
@@ -26,7 +27,7 @@ describe('Common CRUD operations', () => {
       });
   });
   it('GET /test/resource/:id should return 500 on error', (done) => {
-    const r = rester.add({}, 'test/resource').get().router;
+    const r = rester.add({}, 'resource').get().router;
     const server = new Koa()
       .use(r.routes())
       .use(r.allowedMethods());
@@ -40,7 +41,7 @@ describe('Common CRUD operations', () => {
       });
   });
   it('PATCH /test/resource/:id should return 500 on error', (done) => {
-    const r = rester.add({}, 'test/resource').patch().router;
+    const r = rester.add({}, 'resource').patch().router;
     const server = new Koa()
       .use(r.routes())
       .use(r.allowedMethods());
@@ -54,7 +55,7 @@ describe('Common CRUD operations', () => {
       });
   });
   it('DELETE /test/resource/:id should return 500 on error', (done) => {
-    const r = rester.add({}, 'test/resource').delete().router;
+    const r = rester.add({}, 'resource').delete().router;
     const server = new Koa()
       .use(r.routes())
       .use(r.allowedMethods());

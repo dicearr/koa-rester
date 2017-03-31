@@ -44,14 +44,16 @@ describe('ORM2 CRUD operations', () => {
   let rester;
   beforeEach(() => {
     const router = new Router();
+    const base = 'test';
     router.use(bodyParser());
     rester = new Rester({
       router,
+      base,
     });
   });
   it('GET /test/resource should return 500 if the table does not exists', async () => {
     const c = await wrapper(false);
-    const r = rester.add(c.model, 'test/resource').list().router;
+    const r = rester.add(c.model, 'resource').list().router;
     const server = new Koa()
       .use(r.routes())
       .use(r.allowedMethods());
@@ -64,7 +66,7 @@ describe('ORM2 CRUD operations', () => {
   });
   it('GET /test/resource should return an empty list', async () => {
     const c = await wrapper();
-    const r = rester.add(c.model, 'test/resource').list().router;
+    const r = rester.add(c.model, 'resource').list().router;
     const server = new Koa()
       .use(r.routes())
       .use(r.allowedMethods());
@@ -76,7 +78,7 @@ describe('ORM2 CRUD operations', () => {
   });
   it('POST /test/resource should add a new resource', async () => {
     const c = await wrapper();
-    const r = rester.add(c.model, 'test/resource').post().router;
+    const r = rester.add(c.model, 'resource').post().router;
     const server = new Koa()
       .use(r.routes())
       .use(r.allowedMethods());
@@ -89,7 +91,7 @@ describe('ORM2 CRUD operations', () => {
   });
   it('POST /test/resource should return 422 with an invalid data', async () => {
     const c = await wrapper();
-    const r = rester.add(c.model, 'test/resource').post().router;
+    const r = rester.add(c.model, 'resource').post().router;
     const server = new Koa()
       .use(r.routes())
       .use(r.allowedMethods());
@@ -103,7 +105,7 @@ describe('ORM2 CRUD operations', () => {
   });
   it('GET /test/resource/:id should return a valid resource', async () => {
     const c = await wrapper();
-    const r = rester.add(c.model, 'test/resource').get().router;
+    const r = rester.add(c.model, 'resource').get().router;
     const server = new Koa()
       .use(r.routes())
       .use(r.allowedMethods());
@@ -116,7 +118,7 @@ describe('ORM2 CRUD operations', () => {
   });
   it('PATCH /test/resource/:id should return a modified resource', async () => {
     const c = await wrapper();
-    const r = rester.add(c.model, 'test/resource').patch().router;
+    const r = rester.add(c.model, 'resource').patch().router;
     const server = new Koa()
       .use(r.routes())
       .use(r.allowedMethods());
@@ -130,7 +132,7 @@ describe('ORM2 CRUD operations', () => {
   });
   it('DELETE /test/resource/:id should return a modified resource', async () => {
     const c = await wrapper();
-    const r = rester.add(c.model, 'test/resource').delete().router;
+    const r = rester.add(c.model, 'resource').delete().router;
     const server = new Koa()
       .use(r.routes())
       .use(r.allowedMethods());

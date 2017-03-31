@@ -24,17 +24,18 @@ $ npm install koa-rester
 ## Usage
 ```javascript
 const router = new Router();
+const base = 'test';
 
 router.use(bodyParser());
-rester = new Rester({ router });
+rester = new Rester({ router, base });
 
 // Expose GET, POST /test/resource 
 //        GET, PATCH, DELETE /test/resource/:id
-rester.add(model, 'test/resource').rest();
+rester.add(model, 'resource').rest();
 
 // Expose GET /test/resource1 
 //        GET /test/resource1/:id
-rester.add(model1, 'test/resource1').list().get();
+rester.add(model1, 'resource1').list().get();
 
 new Koa()
   .use(r.routes())

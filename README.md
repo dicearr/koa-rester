@@ -24,17 +24,18 @@ $ npm install koa-rester
 ## Usage
 ```javascript
 const router = new Router();
+const base = 'test';
 
 router.use(bodyParser());
-rester = new Rester({ router });
+rester = new Rester({ router, base });
 
 // Expose GET, POST /test/resource 
 //        GET, PATCH, DELETE /test/resource/:id
-rester.add(model, 'test/resource').rest();
+rester.add(model, 'resource').rest();
 
 // Expose GET /test/resource1 
 //        GET /test/resource1/:id
-rester.add(model1, 'test/resource1').list().get();
+rester.add(model1, 'resource1').list().get();
 
 new Koa()
   .use(r.routes())
@@ -54,7 +55,7 @@ More complex examples, with model definitions included, are located in the [wiki
     * [Rester](#exp_module_koa-rester--Rester) ⏏
         * [new Rester(options)](#new_module_koa-rester--Rester_new)
         * _instance_
-            * [.add(model, base)](#module_koa-rester--Rester+add) ⇒ <code>Rester</code>
+            * [.add(model, name)](#module_koa-rester--Rester+add) ⇒ <code>Rester</code>
             * [.rest(options)](#module_koa-rester--Rester+rest) ⇒ <code>Rester</code>
             * [.list(options)](#module_koa-rester--Rester+list) ⇒ <code>Rester</code>
             * [.post(options)](#module_koa-rester--Rester+post) ⇒ <code>Rester</code>
@@ -84,7 +85,7 @@ Create a new Rester.
 
 <a name="module_koa-rester--Rester+add"></a>
 
-#### rester.add(model, base) ⇒ <code>Rester</code>
+#### rester.add(model, name) ⇒ <code>Rester</code>
 **Kind**: instance method of <code>[Rester](#exp_module_koa-rester--Rester)</code>  
 **Returns**: <code>Rester</code> - A new Rester instance configured with the given model and
 base.  
@@ -92,7 +93,7 @@ base.
 | Param | Type | Description |
 | --- | --- | --- |
 | model | <code>Object</code> | The persistence layer Model object. |
-| base | <code>String</code> | Base URL from which the resource API will be built. |
+| name | <code>String</code> | The resource name used to build the resource URI |
 
 <a name="module_koa-rester--Rester+rest"></a>
 

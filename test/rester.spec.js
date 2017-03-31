@@ -7,6 +7,7 @@ describe('Rester', () => {
   beforeEach(() => {
     rester = new Rester({
       router: new Router(),
+      base: 'test',
     });
   });
   it('new Rester() should return an instance of Rester', () => {
@@ -18,67 +19,67 @@ describe('Rester', () => {
     }).to.throw('Undefined router');
   });
   it('list() should return false if no model nor base are provided', () => {
-    let r = rester.add(null, 'test/resource');
+    let r = rester.add(null, 'resource');
     expect(r.list()).to.equal(false);
-    r = rester.add({}, null);
+    r = rester.add(null, null);
     expect(r.list()).to.equal(false);
-    r = rester.add(null, 'test/resource');
+    r = rester.add(null, 'resource');
     expect(r.list()).to.equal(false);
   });
   it('list() should build /test/resource endpoint', () => {
-    const r = rester.add({}, 'test/resource').list().router;
+    const r = rester.add({}, 'resource').list().router;
     isBuilt('GET', r);
   });
   it('post() should return false if no model nor base are provided', () => {
-    let r = rester.add(null, 'test/resource');
+    let r = rester.add(null, 'resource');
     expect(r.post()).to.equal(false);
-    r = rester.add({}, null);
+    r = rester.add(null, null);
     expect(r.post()).to.equal(false);
-    r = rester.add(null, 'test/resource');
+    r = rester.add(null, 'resource');
     expect(r.post()).to.equal(false);
   });
   it('post() should build /test/resource endpoint', () => {
-    const r = rester.add({}, 'test/resource').post().router;
+    const r = rester.add({}, 'resource').post().router;
     isBuilt('POST', r);
   });
   it('get() should return false if no model nor base are provided', () => {
-    let r = rester.add(null, 'test/resource');
+    let r = rester.add(null, 'resource');
     expect(r.get()).to.equal(false);
-    r = rester.add({}, null);
+    r = rester.add(null, null);
     expect(r.get()).to.equal(false);
-    r = rester.add(null, 'test/resource');
+    r = rester.add(null, 'resource');
     expect(r.get()).to.equal(false);
   });
   it('get() should build /test/resource endpoint', () => {
-    const r = rester.add({}, 'test/resource').get().router;
+    const r = rester.add({}, 'resource').get().router;
     isBuilt('GET', r, '/:id');
   });
   it('patch() should return false if no model nor base are provided', () => {
-    let r = rester.add(null, 'test/resource');
+    let r = rester.add(null, 'resource');
     expect(r.patch()).to.equal(false);
-    r = rester.add({}, null);
+    r = rester.add(null, null);
     expect(r.patch()).to.equal(false);
-    r = rester.add(null, 'test/resource');
+    r = rester.add(null, 'resource');
     expect(r.patch()).to.equal(false);
   });
   it('patch() should build /test/resource endpoint', () => {
-    const r = rester.add({}, 'test/resource').patch().router;
+    const r = rester.add({}, 'resource').patch().router;
     isBuilt('PATCH', r, '/:id');
   });
   it('delete() should return false if no model nor base are provided', () => {
-    let r = rester.add(null, 'test/resource');
+    let r = rester.add(null, 'resource');
     expect(r.delete()).to.equal(false);
-    r = rester.add({}, null);
+    r = rester.add(null, null);
     expect(r.delete()).to.equal(false);
-    r = rester.add(null, 'test/resource');
+    r = rester.add(null, 'resource');
     expect(r.delete()).to.equal(false);
   });
   it('delete() should build /test/resource endpoint', () => {
-    const r = rester.add({}, 'test/resource').delete().router;
+    const r = rester.add({}, 'resource').delete().router;
     isBuilt('DELETE', r, '/:id');
   });
   it('rest() should build all the endpoints', () => {
-    const r = rester.add({}, 'test/resource').rest().router;
+    const r = rester.add({}, 'resource').rest().router;
     const stack = r.routes().router.stack;
     expect(stack.length).to.equal(5);
     let layer = stack.pop();
