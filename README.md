@@ -82,6 +82,8 @@ Create a new Rester.
 | options.router | <code>Object</code> | The koa express style router. Any router that supports get, post, put, patch and delete operations. |
 | options.model | <code>Object</code> | The persistence layer model. It can be included here or by using the add() function. Use add function if the rester itself is going to be used to export multiple resources. |
 | options.base | <code>String</code> | The resource base url. It can be included here or by using the add() function. Use add function if the rester itself is going to be used to export multiple resources. |
+| options.before | <code>function</code> | A koa middleware to be executed before each single rest request. It can be added in get, post, put, delete, list and rest options. |
+| options.after | <code>function</code> | A koa middleware to be executed after each single rest request. It can be added in get, post, put, delete, list and rest options. |
 
 <a name="module_koa-rester--Rester+add"></a>
 
