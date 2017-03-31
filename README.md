@@ -34,7 +34,7 @@ rester = new Rester({ router, base });
 rester.add(model, 'resource').rest({
   after: async (ctx) => {
     try {
-      // It will be executed in any REST request
+      // It will be executed in all the REST requests
       await next();
     } catch (err) {
       ctx.body = { message: err.message };
