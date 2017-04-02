@@ -15,8 +15,13 @@
     "url": "git+https://github.com/dicearr/koa-rester.git"
   },
   "keywords": [
-    "koa",
-    "REST"
+    "koa-rester",
+    "koa2",
+    "rest",
+    "rester",
+    "restful",
+    "koajs",
+    "koa"
   ],
   "author": "Diego Ceresuela",
   "license": "MIT",
