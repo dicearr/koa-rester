@@ -1,6 +1,6 @@
 {
   "name": "koa-rester",
-  "version": "0.1.9",
+  "version": "0.1.11",
   "description": "A simple Koa library that makes REST quite easy",
   "main": "lib/rester.js",
   "scripts": {
@@ -30,7 +30,7 @@
   },
   "homepage": "https://github.com/dicearr/koa-rester#readme",
   "dependencies": {
-    "debug": "^2.6.0"
+    "debug": "^3.1.0"
   },
   "devDependencies": {
     "babel-core": "^6.24.0",
