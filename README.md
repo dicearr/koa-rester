@@ -11,8 +11,8 @@
 * One line to deploy a REST API from a Model
 * Persistence packages (see [wiki](https://github.com/dicearr/koa-rester/wiki) if you want to create your own)
   * In memory [dicearr/kr-persistence-inmemory](https://github.com/dicearr/kr-persistence-inmemory)
-  * Mongo [dicearr/kr-persistence-mongo](https://github.com/dicearr/kr-presistence-mongo)
-  * MariaDB [dicearr/kr-persistence-mariadb](https://github.com/dicearr/kr-presistence-mariadb)
+  * Mongoose [dicearr/kr-persistence-mongoose](https://github.com/dicearr/kr-presistence-mongoose)
+  * ~~Sequelize [dicearr/kr-persistence-sequelize](https://github.com/dicearr/kr-presistence-sequelize)~~
 * [koa-router](https://github.com/alexmingoia/koa-router/tree/master/) is used internally.
 * Tested with [koa-bodyparser](https://github.com/koajs/bodyparser), other parsers could work.
 * Todo features are listed in [\#1](https://github.com/dicearr/koa-rester/issues/1)
@@ -40,19 +40,19 @@ koa.use(bodyParser())
  * PATCH /name/:id
  * DELETE /name/:id
  */
-const nameRoutes = rester.add(model, 'name').rest()
+const nameResource = rester.add(model, 'name').rest()
 /*
  * GET /otherName
  * GET /otherName/:id
  * POST /otherName
  */
-const otherRoutes = rester.add(otherModel, 'otherName').get().list().post()
+const otherResource = rester.add(otherModel, 'otherName').get().list().post()
 
 koa
-  .use(nameRoutes.routes())
-  .use(nameRoutes.allowedMethods())
-  .use(otherRoutes.routes())
-  .use(otherRoutes.allowedMethods())
+  .use(nameResource.routes())
+  .use(nameResource.allowedMethods())
+  .use(otherResource.routes())
+  .use(otherResource.allowedMethods())
 ```
 
 More examples can be found in the [wiki](https://github.com/dicearr/koa-rester/wiki).
@@ -88,6 +88,7 @@ Create a rester.
 | options | <code>Object</code> | Configuration object. |
 | options.router | <code>Router</code> | The router to be used, by default koa-router, change this property can break the package. |
 | options.routerOptions | <code>Object</code> | The options that will be passed to [koa-router](https://github.com/alexmingoia/koa-router#new_module_koa-router--Router_new) constructor. If options.router is overwritten with any other router this options must be changed according to the new router. |
+| options.log | <code>function</code> | The function used to log the events |
 | options.persistence | <code>KoaResterPersistence</code> | An instance of KoaResterPersistence, such as [kr-presistence-sequelize](https://github.com/dicearr/kr-presistence-sequelize), [kr-persistence-inmemory](https://github.com/dicearr/kr-persistence-inmemory) or [kr-presistence-mongoose](https://github.com/dicearr/kr-presistence-mongoose). This property is compulsory, an error will be thrown if it is not present. |
 
 <a name="Rester+add"></a>
