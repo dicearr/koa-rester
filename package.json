@@ -1,14 +1,15 @@
 {
   "name": "koa-rester",
-  "version": "0.1.11",
+  "version": "1.0.0-alpha",
   "description": "A simple Koa library that makes REST quite easy",
-  "main": "lib/rester.js",
+  "main": "lib/index.js",
   "scripts": {
-    "test": "mocha --recursive",
-    "cover": "istanbul cover node_modules/mocha/bin/_mocha --report lcovonly -- --recursive",
-    "lcover": "istanbul cover node_modules/mocha/bin/_mocha -- --recursive",
-    "coveralls": "npm run cover && cat ./coverage/lcov.info | coveralls",
-    "docs": "jsdoc2md --configure jsdoc.conf.json --template TEMPLATE.md lib\\*.js > README.md"
+    "test": "jest",
+    "ci:coverage": "npm run test:coverage -- --ci",
+    "test:coverage": "jest --coverage",
+    "jsdoc": "jsdoc --configure jsdoc.conf.json lib/*.js",
+    "docs": "jsdoc2md --configure jsdoc.conf.json --template TEMPLATE.md lib/*.js > README.md",
+    "coveralls": "npm run ci:coverage && cat ./coverage/lcov.info | coveralls"
   },
   "repository": {
     "type": "git",
@@ -30,75 +31,36 @@
   },
   "homepage": "https://github.com/dicearr/koa-rester#readme",
   "dependencies": {
-    "debug": "^3.1.0"
+    "koa-compose": "^4.0.0",
+    "koa-router": "^7.2.1"
   },
   "devDependencies": {
-    "babel-core": "^6.24.0",
-    "babel-plugin-transform-async-to-generator": "^6.22.0",
-    "babel-preset-es2015": "^6.24.0",
-    "chai": "^3.5.0",
-    "coveralls": "^2.12.0",
-    "eslint": "^3.14.1",
-    "eslint-config-airbnb": "^14.0.0",
-    "eslint-plugin-import": "^2.2.0",
-    "eslint-plugin-jsx-a11y": "^3.0.2",
-    "eslint-plugin-react": "^6.9.0",
-    "istanbul": "^1.1.0-alpha.1",
-    "jsdoc": "^3.4.3",
-    "jsdoc-babel": "^0.3.0",
-    "koa": "^2.2.0",
-    "koa-bodyparser": "^4.1.0",
-    "koa-router": "^7.1.0",
-    "mocha": "^3.2.0",
-    "mocha-lcov-reporter": "^1.3.0",
-    "mongoose": "^4.9.0",
-    "mysql": "^2.13.0",
-    "orm": "^3.2.3",
-    "sinon": "^2.1.0",
+    "coveralls": "^3.0.0",
+    "jest": "^21.2.1",
+    "jsdoc": "^3.5.5",
+    "jsdoc-strip-async-await": "^0.1.0",
+    "jsdoc-to-markdown": "^3.0.0",
+    "koa": "^2.3.0",
+    "koa-bodyparser": "^4.2.0",
+    "kr-persistence-inmemory": "https://github.com/dicearr/kr-persistence-inmemory.git",
+    "standard": "^10.0.3",
     "supertest": "^3.0.0"
   },
-  "eslintConfig": {
-    "extends": "airbnb",
-    "env": {
-      "browser": true,
-      "node": true,
-      "es6": true,
-      "mocha": true
-    },
-    "parserOptions": {
-      "ecmaVersion": 2017
-    },
-    "globals": {
-      "Exception": true
-    },
-    "rules": {
-      "no-console": 0,
-      "no-use-before-define": 0,
-      "no-param-reassign": [
-        2,
-        {
-          "props": false
-        }
-      ],
-      "valid-jsdoc": [
-        "error",
-        {
-          "requireReturn": true,
-          "requireReturnType": true,
-          "requireParamDescription": true,
-          "requireReturnDescription": true
-        }
-      ],
-      "require-jsdoc": [
-        "error",
-        {
-          "require": {
-            "FunctionDeclaration": true,
-            "MethodDefinition": true,
-            "ClassDeclaration": true
-          }
-        }
-      ]
-    }
+  "jest": {
+    "setupFiles": [
+      "./bootstrap.js"
+    ],
+    "collectCoverageFrom": [
+      "lib/*.js"
+    ]
+  },
+  "standard": {
+    "env": [
+      "jest"
+    ],
+    "globals": [
+      "request",
+      "Persistence"
+    ]
   }
 }

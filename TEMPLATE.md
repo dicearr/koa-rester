@@ -5,16 +5,21 @@
 [![dependencies Status](https://david-dm.org/dicearr/koa-rester/status.svg)](https://david-dm.org/dicearr/koa-rester)
 ![](https://img.shields.io/npm/dm/koa-rester.png)
 
-> [Koa](https://github.com/koajs/koa) based framework for deploying RESTful APIs easily
+> [Koa](https://github.com/koajs/koa) based framework for deploying RESTful APIs easily. Inspired by [travist/resourcejs](https://github.com/travist/resourcejs).
+
 
 * One line to deploy a REST API from a Model
-* Tested with [mongoose](https://github.com/Automattic/mongoose) and [ORM](https://github.com/dresende/node-orm2) models
-* Tested with [koa-router](https://github.com/alexmingoia/koa-router/tree/master/) but it should work with almost any router that provides get|post|put|delete operations.
-* Tested with [koa-bodyparser](https://github.com/koajs/bodyparser) 
+* Persistence packages (see [wiki](https://github.com/dicearr/koa-rester/wiki) if you want to create your own)
+ * KoaResterPersistence [dicearr/kr-persistence](https://github.com/dicearr/kr-persistence-seed)
+ * In memory [dicearr/kr-persistence-inmemory](https://github.com/dicearr/kr-persistence-inmemory)
+ * Mongo [dicearr/kr-persistence-mongo](https://github.com/dicearr/kr-presistence-mongo)
+ * MariaDB [dicearr/kr-persistence-mariadb](https://github.com/dicearr/kr-presistence-mariadb)
+* [koa-router](https://github.com/alexmingoia/koa-router/tree/master/) is used internally.
+* Tested with [koa-bodyparser](https://github.com/koajs/bodyparser), other parsers could work.
 * Todo features are listed in [\#1](https://github.com/dicearr/koa-rester/issues/1)
 
 ## Installation
- 
+
 ```
 $ npm install koa-rester
 ```
@@ -22,33 +27,36 @@ $ npm install koa-rester
 
 ## Usage
 ```javascript
-const router = new Router();
-const base = 'test';
+const koa = new Koa()
+const rester = new Rester({
+  persistence: require('kr-persistence-inmemory'),
+})
 
-router.use(bodyParser());
-rester = new Rester({ router, base });
+koa.use(bodyParser())
+/*
+ * GET /name
+ * GET /name/:id
+ * POST /name
+ * PUT /name/:id
+ * PATCH /name/:id
+ * DELETE /name/:id
+ */
+const nameResource = rester.add(model, 'name').rest()
+/*
+ * GET /otherName
+ * GET /otherName/:id
+ * POST /otherName
+ */
+const otherResource = rester.add(otherModel, 'otherName').get().list().post()
 
-// Expose GET, POST /test/resource 
-//        GET, PATCH, DELETE /test/resource/:id
-rester.add(model, 'resource').rest({
-  after: async (ctx, next) => {},
-  // afterPost overwrites after for POST requests
-  afterPost: async (ctx, next) => {},
-});
-
-// Expose GET /test/resource1 
-//        GET /test/resource1/:id
-rester.add(model1, 'resource1').list({
-  before: async (ctx, next) => {},
-}).get();
-
-new Koa()
-  .use(r.routes())
-  .use(r.allowedMethods())
-  .listen(30001);
+koa
+  .use(nameResource.routes())
+  .use(nameResource.allowedMethods())
+  .use(otherResource.routes())
+  .use(otherResource.allowedMethods())
 ```
 
-More complex examples, with model definitions included, are located in the [wiki](https://github.com/dicearr/koa-rester/wiki).
+More examples can be found in the [wiki](https://github.com/dicearr/koa-rester/wiki).
 
 ## API Reference
 
