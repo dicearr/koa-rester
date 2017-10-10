@@ -11,8 +11,8 @@
 * One line to deploy a REST API from a Model
 * Persistence packages (see [wiki](https://github.com/dicearr/koa-rester/wiki) if you want to create your own)
   * In memory [dicearr/kr-persistence-inmemory](https://github.com/dicearr/kr-persistence-inmemory)
-  * Mongoose [dicearr/kr-persistence-mongoose](https://github.com/dicearr/kr-presistence-mongoose)
-  * ~~Sequelize [dicearr/kr-persistence-sequelize](https://github.com/dicearr/kr-presistence-sequelize)~~
+  * Mongoose [dicearr/kr-persistence-mongoose](https://github.com/dicearr/kr-persistence-mongoose)
+  * ~~Sequelize [dicearr/kr-persistence-sequelize](https://github.com/dicearr/kr-persistence-sequelize)~~
 * [koa-router](https://github.com/alexmingoia/koa-router/tree/master/) is used internally.
 * Tested with [koa-bodyparser](https://github.com/koajs/bodyparser), other parsers could work.
 * Todo features are listed in [\#1](https://github.com/dicearr/koa-rester/issues/1)
