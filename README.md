@@ -12,6 +12,7 @@
 * Persistence packages (see [wiki](https://github.com/dicearr/koa-rester/wiki) if you want to create your own)
   * In memory [dicearr/kr-persistence-inmemory](https://github.com/dicearr/kr-persistence-inmemory)
   * Mongoose [dicearr/kr-persistence-mongoose](https://github.com/dicearr/kr-persistence-mongoose)
+    * Working examples [dicearr/kr-example-mongoose](https://github.com/dicearr/kr-example-mongoose)
   * ~~Sequelize [dicearr/kr-persistence-sequelize](https://github.com/dicearr/kr-persistence-sequelize)~~
 * [koa-router](https://github.com/alexmingoia/koa-router/tree/master/) is used internally.
 * Tested with [koa-bodyparser](https://github.com/koajs/bodyparser), other parsers could work.
