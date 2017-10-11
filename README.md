@@ -76,6 +76,7 @@ More examples can be found in the [wiki](https://github.com/dicearr/koa-rester/w
 
 * [Rester](#Rester)
     * [new Rester(options)](#new_Rester_new)
+    * [.swagger(options)](#Rester+swagger)
     * [.add(model, name)](#Rester+add) ⇒ [<code>Resource</code>](#Resource)
 
 <a name="new_Rester_new"></a>
@@ -89,8 +90,24 @@ Create a rester.
 | options | <code>Object</code> | Configuration object. |
 | options.router | <code>Router</code> | The router to be used, by default koa-router, change this property can break the package. |
 | options.routerOptions | <code>Object</code> | The options that will be passed to [koa-router](https://github.com/alexmingoia/koa-router#new_module_koa-router--Router_new) constructor. If options.router is overwritten with any other router this options must be changed according to the new router. |
-| options.log | <code>function</code> | The function used to log the events |
+| options.logger | <code>function</code> | The logger that will be used |
 | options.persistence | <code>KoaResterPersistence</code> | An instance of KoaResterPersistence, such as [kr-presistence-sequelize](https://github.com/dicearr/kr-presistence-sequelize), [kr-persistence-inmemory](https://github.com/dicearr/kr-persistence-inmemory) or [kr-presistence-mongoose](https://github.com/dicearr/kr-presistence-mongoose). This property is compulsory, an error will be thrown if it is not present. |
+
+<a name="Rester+swagger"></a>
+
+### rester.swagger(options)
+Adds the required metadata to the Swagger documentation.
+
+**Kind**: instance method of [<code>Rester</code>](#Rester)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| options | <code>Object</code> | Swagger metadata |
+| options.info | <code>Object</code> | Global information |
+| options.info.version | <code>String</code> | The API version |
+| options.info.title | <code>String</code> | The API title |
+| options.info.description | <code>String</code> | The API description |
+| options.host | <code>String</code> | The API host |
 
 <a name="Rester+add"></a>
 
