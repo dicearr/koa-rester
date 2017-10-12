@@ -3,7 +3,8 @@
 [![Build Status](https://travis-ci.org/dicearr/koa-rester.svg?branch=master)](https://travis-ci.org/dicearr/koa-rester)
 [![Coverage Status](https://coveralls.io/repos/github/dicearr/koa-rester/badge.svg?branch=master)](https://coveralls.io/github/dicearr/koa-rester?branch=master)
 [![dependencies Status](https://david-dm.org/dicearr/koa-rester/status.svg)](https://david-dm.org/dicearr/koa-rester)
-![](https://img.shields.io/npm/dm/koa-rester.png)
+[![CII Best Practices](https://bestpractices.coreinfrastructure.org/projects/1307/badge)](https://bestpractices.coreinfrastructure.org/projects/1307)
+![Downloads](https://img.shields.io/npm/dm/koa-rester.png)
 
 > [Koa](https://github.com/koajs/koa) based framework for deploying RESTful APIs easily. Inspired by [travist/resourcejs](https://github.com/travist/resourcejs).
 
